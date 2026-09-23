@@ -6,12 +6,6 @@ Created on Mon Sep 14 09:18:09 2026
 """
 
 
-"""
-to do :
-    -maybe acount for lack of header
-"""
-
-
 import os #used to validate file existing
 
 
@@ -65,7 +59,7 @@ def convertDataToJSON(data, keys):
     stringData = stringData[:-2]
     stringData += "],\n"
     
-    #Adds rest og elements
+    #Adds rest of elements
     for d in data:
         stringData += "["
         for k in keys:
@@ -84,20 +78,38 @@ def convertDataToJSON(data, keys):
 def writeToFile(text,fileNameNew):
     with open(fileNameNew, "w", encoding="utf-8") as f:
         f.write(text)
-        
-  
+   
+def writeConvertion(data, key, fileName):
+    dataJson = convertDataToJSON(data, key)
+    fileNameNew = fileName[:-3]+"json"
+    writeToFile(dataJson, fileNameNew)
+    print("File \"" + fileName + "\" has now been converted to json format")
 
-while __name__ == "__main__":
-    fileName = input("Input name of file for conversion \n")
-    if fileName == "q" or not fileName:
-        print("Quiting file conversion")
-        break
-    elif fileName[-4:] == ".csv":
+
+def fileConvertion(fileName):
+    if fileName[-4:] == ".csv":
         convertedData, headers = retrieveData(fileName)
         if convertedData:
-            dataJson = convertDataToJSON(convertedData, headers)
-            fileNameNew = fileName[:-3]+"json"
-            writeToFile(dataJson, fileNameNew)
-            print("File \"" + fileName + "\" has now been converted to json format")
+            writeConvertion(convertedData, headers, fileName)
     else:
         print("file is not .csv")
+    
+def runner():
+    while True:
+        fileName = input("Input name of file for conversion \n")
+        if fileName == "q" or not fileName:
+            print("Quiting file conversion")
+            break
+        fileConvertion(fileName)
+    return "runner ended"
+
+
+if __name__ == "__main__":
+    runner()
+    
+    
+    
+
+    
+    
+    

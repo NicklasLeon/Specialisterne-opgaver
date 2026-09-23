@@ -7,6 +7,7 @@ Created on Thu Sep 17 09:50:58 2026
 
 import os
 import unittest
+from unittest import mock
 import ParserCode.Parser as Parser
 
 
@@ -25,14 +26,20 @@ class test_of_conversion(unittest.TestCase):
     test, head = Parser.retrieveData("employees.ascii.csv")
     test2, head2 = Parser.retrieveData("sogne.dawa.csv")
     
+    #test if imporing file works
     def test_of_import(self):
         self.assertEqual(self.test[11]["role"], "VP of Marketing")
         
+    #test if indexes work
+    
+    #test if array is of expected size
     def test_of_size1(self):
         self.assertEqual(len(self.test), 30)
     def test_of_size2(self):
         self.assertEqual(len(self.head), 7)
-
+    #test datatype of numbers
+    
+    #test if other csv file also works
     def test_of_import2(self):
         self.assertEqual(self.test2[100]["geo_version"], 5)
 
@@ -83,5 +90,18 @@ class test_of_toJSON(unittest.TestCase):
                         print(self.test[i][j])
                         containsHeads = False
         self.assertTrue(containsHeads)
+        
+class test_of_whole(unittest.TestCase):
+    def test_whole(self):
+        Parser.fileConvertion("sogne.dawa.csv")
+        self.assertTrue(os.path.exists("sogne.dawa.csv"))
+        
+    @mock.patch('ParserCode.Parser.input', create=True)
+    
+    def test_of_runner(self,mocked_input):
+        mocked_input.side_effect = ["erder.csv", "q"]
+        run= Parser.runner()
+        self.assertTrue(run == "runner ended")
+        
         
 
