@@ -1,62 +1,51 @@
-# Project Title
+# Specialisterne Parser
 
-Simple overview of use/purpose.
+This program is used to convert a .csv file to a .json formated file. 
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+This is a coding project to make a simple parser for converting a .csv file to a .json file. this is done using a couple of functions. 
+It is currently assumed that the csv file has a header.
+
+retrieveFile: Takes a file name and retrieves the file data if the file exists.
+
+convertData: Converts the file from a string to list of dictionary entries with the header elements as keys.
+
+convertDataToJSON: Converts the new format into a new string based on the .json file format.
+
+writeToFile: Last step simply writes the file using the original name with .json.
 
 ## Getting Started
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+The program is made to run on Python 3.13.
+The only library for running the program is the os module.
+The library unittest was used in the test_Parser.py file to run unit tests.
 
-### Installing
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
+To run the code, execute the pyton file Parser.py
 ```
-code blocks for commands
+python ../Parser/ParserCode/Parser.py
 ```
 
-## Help
+When the code is run it ask for an input file. if the file is placed in the same folder as the code, this would simply be
 
-Any advise for common problems or issues.
 ```
-command to run if program contains helper info
+name_of_folder/name_of_file.csv
 ```
+
+If the program can't find the file, it will return an error message and ask for a new file name.
+If the program can find the file, it will load the file as a text string. 
+
+
+The .json file is placed in the same folder as the original .csv file. 
+
+To quit the program simply input "q".
+
 
 ## Authors
 
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
-
-## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
-
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+Nicklas Leon Knudsen
